@@ -1,12 +1,19 @@
-/*=== CSS ===*/
 :root {
   --cor-fundo-pagina: #0f0c0c;
   --cor-fundo-mes: #2b2b2b;
-  --cor-texto: #bdbdbd;
+  --cor-texto: #ffffff;
   --cor-borda-titulo: #ecf0f1;
   --cor-dia: #505050;
   --cor-dia-hover: #868686;
   --cor-texto-dia: white;
+  --cor-evento-fundo: red;
+  --cor-evento-borda: white;
+  --cor-dia-selecionado: #009719;
+  --cor-dia-selecionado-com-evento: #cc0000;
+  --cor-lista-fundo: #333;
+  --cor-excluir: #ff4444;
+  --cor-excluir-hover: #cc0000;
+  --cor-eventos-marcados-fundo: #111;
 }
 
 * {
@@ -41,7 +48,6 @@ h1 {
   margin-bottom: 5px;
 }
 
-/* Container principal do calendário */
 #calendario-container {
   display: flex;
   flex-wrap: wrap;
@@ -61,13 +67,12 @@ h1 {
   top: 0;
   height: 100%;
   width: 250px;
-  background-color: #111;
-  color: white;
+  background-color: var(--cor-eventos-marcados-fundo);
+  color: var(--cor-texto-dia);
   padding-top: 20px;
   text-align: center;
 }
 
-/* Container de cada mês */
 .mes-container {
   background-color: var(--cor-fundo-mes);
   border-radius: 4px;
@@ -76,11 +81,10 @@ h1 {
   flex: 0 0 calc(20% - 10px);
   min-width: 180px;
   max-width: calc(20% - 10px);
-  height: calc((100vh - 100px) / 3);
+  height: 280px;
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
-  height: 280px;
 }
 
 .mes-container h2 {
@@ -93,7 +97,6 @@ h1 {
   flex-shrink: 0;
 }
 
-/* Container dos dias */
 .dias-container {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -103,7 +106,6 @@ h1 {
   align-content: start;
 }
 
-/* Estilo para cada dia */
 .dia {
   display: flex;
   align-items: center;
@@ -115,37 +117,49 @@ h1 {
   transition: background-color 0.2s;
   font-size: clamp(0.7rem, 0.9vw, 0.9rem);
   min-height: 20px;
+  border-radius: 3px;
 }
 
 .dia:hover {
   background-color: var(--cor-dia-hover);
-  color: white;
+  color: var(--cor-texto-dia);
 }
 
 button {
-  width: 20px;
-  height: 20px;
+  background: var(--cor-dia-selecionado);
+  color: var(--cor-texto-dia);
+  border: none;
+  padding: 2px 6px;
+  margin-left: 5px;
+  cursor: pointer;
+  border-radius: 3px;
+  height: 30px;
+  width: 30px;
+  margin: 0;
 }
-
-/* Adicione estas classes ao seu CSS existente */
+button:hover {
+  background-color: #016111;
+}
 
 .dia.selecionado {
-  background-color: #009719;
-  border: 1px solid #ecf0f1;
-  color: white;
+  background-color: var(--cor-dia-selecionado);
+  border: 1px solid var(--cor-borda-titulo);
+  color: var(--cor-texto-dia);
 }
+
 .dia.com-evento {
-  background-color: red;
-  border: 1px solid white;
+  background-color: var(--cor-evento-fundo);
+  border: 1px solid var(--cor-evento-borda);
 }
 
 .dia.dia.com-evento.dia.selecionado {
-  background-color: #cc0000;
-  border: 1px solid #009719;
+  background-color: var(--cor-dia-selecionado-com-evento);
+  border: 1px solid var(--cor-dia-selecionado);
 }
+
 .excluir {
-  background: #ff4444;
-  color: white;
+  background: var(--cor-excluir);
+  color: var(--cor-texto-dia);
   border: none;
   padding: 2px 6px;
   margin-left: 5px;
@@ -155,7 +169,7 @@ button {
 }
 
 .excluir:hover {
-  background: #cc0000;
+  background: var(--cor-excluir-hover);
 }
 
 #lista-de-eventos-dia {
@@ -165,10 +179,43 @@ button {
 
 #lista-de-eventos-dia li {
   padding: 5px;
-  margin: 5px 0;
-  background: #333;
+  margin: 5px 20px;
+  background: var(--cor-lista-fundo);
   border-radius: 4px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+#input-eventos {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  font-weight: 500;
+  color: #fff;
+  background-color: rgb(28, 28, 30);
+  box-shadow: 0 0 0.4vw rgba(0, 0, 0, 0.5), 0 0 0 0.15vw transparent;
+  border-radius: 3px;
+  border: none;
+  outline: none;
+  padding: 0.4vw;
+  transition: 0.4s;
+  margin-top: 5px;
+}
+
+#input-eventos:hover {
+  box-shadow: 0 0 0 0.15vw rgba(135, 207, 235, 0.186);
+}
+
+#input-eventos:focus {
+  box-shadow: 0 0 0 2px rgb(196, 196, 196);
+}
+
+p {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#titulo-evento-dia {
+  color: var(--cor-dia-selecionado);
 }
