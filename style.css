@@ -1,0 +1,174 @@
+/*=== CSS ===*/
+:root {
+  --cor-fundo-pagina: #0f0c0c;
+  --cor-fundo-mes: #2b2b2b;
+  --cor-texto: #bdbdbd;
+  --cor-borda-titulo: #ecf0f1;
+  --cor-dia: #505050;
+  --cor-dia-hover: #868686;
+  --cor-texto-dia: white;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: auto;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--cor-fundo-pagina);
+  color: var(--cor-texto);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 15px;
+  flex-shrink: 0;
+}
+
+h1 {
+  color: var(--cor-texto);
+  margin-bottom: 5px;
+}
+
+/* Container principal do calendário */
+#calendario-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+  align-content: start;
+  flex: 1 1 auto;
+  max-height: calc(100vh - 80px);
+  margin-left: 260px;
+  overflow: hidden;
+  padding: 10px;
+}
+
+#eventos-marcados {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 250px;
+  background-color: #111;
+  color: white;
+  padding-top: 20px;
+  text-align: center;
+}
+
+/* Container de cada mês */
+.mes-container {
+  background-color: var(--cor-fundo-mes);
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(163, 163, 163, 0.1);
+  padding: 8px;
+  flex: 0 0 calc(20% - 10px);
+  min-width: 180px;
+  max-width: calc(20% - 10px);
+  height: calc((100vh - 100px) / 3);
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 280px;
+}
+
+.mes-container h2 {
+  text-align: center;
+  color: var(--cor-texto);
+  margin-bottom: 8px;
+  font-size: clamp(0.9rem, 1.2vw, 1.3rem);
+  border-bottom: 2px solid var(--cor-borda-titulo);
+  padding-bottom: 4px;
+  flex-shrink: 0;
+}
+
+/* Container dos dias */
+.dias-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  flex: 1;
+  justify-content: center;
+  align-content: start;
+}
+
+/* Estilo para cada dia */
+.dia {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  background-color: var(--cor-dia);
+  color: var(--cor-texto-dia);
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: clamp(0.7rem, 0.9vw, 0.9rem);
+  min-height: 20px;
+}
+
+.dia:hover {
+  background-color: var(--cor-dia-hover);
+  color: white;
+}
+
+button {
+  width: 20px;
+  height: 20px;
+}
+
+/* Adicione estas classes ao seu CSS existente */
+
+.dia.selecionado {
+  background-color: #009719;
+  border: 1px solid #ecf0f1;
+  color: white;
+}
+.dia.com-evento {
+  background-color: red;
+  border: 1px solid white;
+}
+
+.dia.dia.com-evento.dia.selecionado {
+  background-color: #cc0000;
+  border: 1px solid #009719;
+}
+.excluir {
+  background: #ff4444;
+  color: white;
+  border: none;
+  padding: 2px 6px;
+  margin-left: 5px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.excluir:hover {
+  background: #cc0000;
+}
+
+#lista-de-eventos-dia {
+  list-style-type: none;
+  padding: 0;
+}
+
+#lista-de-eventos-dia li {
+  padding: 5px;
+  margin: 5px 0;
+  background: #333;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

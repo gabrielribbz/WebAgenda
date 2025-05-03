@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendário 2025</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Calendário 2025</h1>
+    </header>
+
+    <div id="calendario-container"></div>
+    <div id="eventos-marcados">
+      <p>Eventos do dia</p>
+      <p id="titulo-evento-dia"></p>
+
+      <div id="add-event">
+        <input id="input-eventos" type="text" />
+        <button onclick="addevent()">+</button>
+      </div>
+      <ul id="lista-de-eventos-dia"></ul>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
